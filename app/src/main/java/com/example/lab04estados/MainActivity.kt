@@ -1,29 +1,33 @@
+@file:OptIn(ExperimentalMaterial3Api::class)
+
 package com.example.lab04estados
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import androidx.compose.ui.text.font.FontWeight
 import com.example.lab04estados.ui.theme.Lab04EstadosTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContent {
             Lab04EstadosTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
+                Surface(modifier = Modifier.fillMaxSize()) {
+                    Column {
+                        TopAppBarComponent()
+                        LazyColumnComponent()
+                        CardComponent()
+                    }
                 }
             }
         }
@@ -31,17 +35,30 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
+fun TopAppBarComponent() {
+    TopAppBar(
+        title = { Text("Mi TopAppBar") }
     )
 }
 
-@Preview(showBackground = true)
 @Composable
-fun GreetingPreview() {
-    Lab04EstadosTheme {
-        Greeting("Android")
+fun LazyColumnComponent() {
+    val itemsList = listOf("Elemento 1", "Elemento 2", "Elemento 3", "Elemento 4")
+
+    LazyColumn(modifier = Modifier.padding(16.dp)) {
+        items(itemsList) { item ->
+            Text(text = item, modifier = Modifier.padding(8.dp))
+        }
+    }
+}
+
+@Composable
+fun CardComponent() {
+    Card(modifier = Modifier.padding(16.dp)) {
+        Column(modifier = Modifier.padding(16.dp)) {
+            Text(text = "Hola desde una Card")
+            Spacer(modifier = Modifier.height(8.dp))
+            Text(text = "Este es un contenido dentro de una Card.")
+        }
     }
 }
