@@ -33,7 +33,7 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
-
+// Cambio de prueba
 @Composable
 fun ViewHolaCurso() {
     Column(
