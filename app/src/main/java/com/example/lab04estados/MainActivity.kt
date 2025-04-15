@@ -44,7 +44,7 @@ fun ViewHolaCurso() {
     ) {
         Text(
             text = "Welcome to the Course!",
-            fontSize = 28.sp,
+            fontSize = 32.sp, // Cambie de 28.sp a 32.sp
             fontWeight = FontWeight.Bold
         )
         Spacer(modifier = Modifier.height(16.dp))
